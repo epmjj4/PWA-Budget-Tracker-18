@@ -3,11 +3,27 @@ let db;
 //this will create a new db request from budget db
 const request = indexedDB.open('budget', 1);
 
-reuqest.onupgradeneeded = function (event) {
+// The onupgradeneeded property of the IDBOpenDBRequest interface is the event handler for the 
+//upgradeneeded event, triggered when a database of a bigger version number than the existing stored 
+//database is loaded. The event passed to the handler is an IDBVersionChangeEvent 
+request.onupgradeneeded = function ({
+    event
+}) {
+    const db = event.result;
     // this will create an object called pending
-    const db = event.target.result:
+
+    db.createObjectStore("pending", {
+        autoIncrement: true
+    });
     // this will check if app is online before reading from db
-    if (navigator.online) {
+
+}
+request.onsuccess = function ({
+    event
+}) {
+    db = event.result;
+    // this will check to make sure Database is online
+    if (navigator.onLine) {
         checkDatabase();
     }
 }
