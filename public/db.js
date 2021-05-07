@@ -26,4 +26,58 @@ request.onsuccess = function ({
     if (navigator.onLine) {
         checkDatabase();
     }
+
 }
+request.onerror= function (error) {
+    console.log("Show me if there is an error?");
+};
+
+function saveRecord(record) {
+    //create transaction to pending dbTransaction
+    const transaction = db.transaction(["pending"], "readwrite");
+
+    // access pending object
+
+    const store = transaction.objectstore("pending");
+
+    // add a record to pending object
+
+    store.add(record);
+}
+
+function checkDatabase(){
+    //begin new transaction on pending dbTransaction
+    const transaction = db.transaction(["pending"], "readwrite");
+
+    // access pending object store.
+    const store = transaction.objectstore("pending");
+
+    // retrieve all records from pending ojbect store and se it to getAll
+    const getAll = store.getAll();
+
+}
+
+getAll.onsuccess = function() {
+    it (getAll.result.length > 0 {
+        method: "POST",
+        body: JSON.stringify(getAll.result),
+        headers: {
+            accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    }) .then(response => response.JSON())
+    .then(() => {
+        // if successful, open a transaction on pending db
+        const transaction = db.transaction(["pending"], "readwrite");
+
+        // access pending object store
+        const store =transaction.objectstore("pending");
+        
+        //clear all the items in the pending object store
+        store.clear();
+
+    });
+}
+
+// app will come back online
+window.addEventListener("online", checkDatabase);
