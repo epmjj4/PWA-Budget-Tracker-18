@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
@@ -21,7 +22,9 @@ app.use(express.static("public"));
    
 // })
 
-mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/budget-tracker", {
+//|| "mongodb://localhost/budget-tracker"
+
+mongoose.connect(process.env.MONGODB_URL ,{
   useNewUrlParser: true,
        useUnifiedTopology: true,
        useCreateIndex: true,
