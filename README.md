@@ -19,6 +19,8 @@ NPM
 Heroku
 Google
 
+![BTracker-Screenshot](https://raw.githubusercontent.com/epmjj4/PWA-Budget-Tracker-18/main/assets/Budget-Tracker-1-Screenshot.png "BT-Screenshot")
+
 ![BTracker-Screenshot](https://raw.githubusercontent.com/epmjj4/PWA-Budget-Tracker-18/main/assets/Budget-Tracker-Screenshot.png "BT-Screenshot")
 
 
